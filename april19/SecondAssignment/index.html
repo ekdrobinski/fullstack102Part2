@@ -1,0 +1,36 @@
+<!-- Create a to-do list and it must accomplish the following things:
+
+Show an unordered list of to-do items
+Show an input to enter a new to-do
+Show a button to add a to-do. When the button is clicked:
+The text from the input box is used to add a list item to the bottom of the list
+The text from the input box is cleared out.
+When the user clicks on a list item, it is removed
+
+Challenge (Optional)
+When a list item is clicked, cross it out, then remove it after 1 second.
+Add items into browser stroage */ -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To-Do List</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="myDIV" class="header">
+        <h2>My To Do List</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
+      </div>
+      
+      <ul id="myUL">
+        <li>Hit the gym</li>
+        <li class="checked">Pay bills</li>
+        <li>Meet George</li>
+        <li>Buy eggs</li>
+        <li>Read a book</li>
+        <li>Organize office</li>
+      </ul>
+	<script src="script.js"></script>
+</body>
+</html>
