@@ -1,0 +1,48 @@
+body {
+    font-family: 'Lucida Sans', Arial, sans-serif, sans-serif;
+    color: #544caf;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+
+  #instruction {
+    text-align: center;
+  }
+  
+  /* the #... uses the id to reference from the html file*/
+  #inputBox {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #544caf;
+    border-radius: 5px;
+    width: 60%;
+  }
+  
+  #addButton {
+
+   display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+    background-color: #544caf;
+    color: white;
+    cursor: pointer;
+    width: 50px;
+
+  }
+  
+  #list {
+    padding: 0;
+    width: 60%;
+    margin: 0 auto;
+    list-style: none;
+  }
+  
+
