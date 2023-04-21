@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getAllPosts()">Get All Posts</button>  <!-- gets all posts -->
+    
+    <button onclick="getPostWithId10()">Get Post with ID 10</button> <!-- get post with the id of 10 -->
+    
+    <button onclick="createNewPost()">Create New Post</button> <!-- creates a new post and logs the id generated for it by the server -->
+    
+    <button onclick="replacePostWithId12()">Replace Post with ID 12</button> <!-- replaces the post with the id of 12=-->
+    
+    <button onclick="updateTitleOfPostWithId12()">Update Title of Post with ID 12</button> <!-- updates the title of the post with the id 12 -->
+   
+    <button onclick="deletePostWithId12()">Delete Post with ID 12</button> <!-- deletes post with id of 12 -->
+    <div id="output"></div>
+</body>
+
+
+<!-- javascript -->
+<script> 
+    function getAllPosts() {  //attempts to get all posts
+fetch("https://jsonplaceholder.typicode.com/posts") //uses fetch to get the posts from the API
+    .then(response => response.json())
+    .then(posts => {
+      const output = document.getElementById("output"); //this is the output element
+      output.innerHTML = " ";
+      posts.forEach(post => {
+        output.innerHTML += "<p>" + post.title + "</p>" ; //loop to get each post and title for an output
+      });
+    });
+} 
+
+function getPostWithId10() {
+  fetch("https://jsonplaceholder.typicode.com/posts/10") //GET request in the fetch
+    .then(response => response.json()) //json method into an  object
+    .then(post => {
+      const output = document.getElementById("output"); //gets element by id
+      output.innerHTML =post.title +  post.body; //gets content f/API
+    });
+}
+function createNewPost() {
+  fetch("https://jsonplaceholder.typicode.com/posts", { //server address
+    method: "POST", //making a post address :O
+        headers: {
+         "Content-Type": "application/json"}, //to get JSON type data
+    body: JSON.stringify({ //specificy JSON specific data in body
+      //title: "New Post", 
+      //body: "blah",
+      userId: 1 //key of method, value of 1
+    })
+  })
+    .then(response => response.json()) //server response and we can object to use json w/
+    .then(post => {
+      const output = document.getElementById("output"); //saves the object output as output by element id
+      output.innerHTML = "<p>New post created with ID" + post.id + "</p>";
+    });
+}
+
+function replacePostWithId12() {
+  fetch("https://jsonplaceholder.typicode.com/posts/12", {
+    method: "PUT", //key of method, value of PUT
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ //string it, yo
+      id: 12, //object whose value is 12 key is id
+      title: "  You replaced me... replaced meeee-I hope",
+      body: "shoobidobop",
+      userId: 1 //key of method, value of 1
+    })
+  })
+    .then(response => response.json())
+    .then(post => {
+      const output = document.getElementById("output");
+      output.innerHTML = "Post with id 12 replace:" + post.title + "</p><p>" + post.body + "</p>";
+    });
+}
+
+function updateTitleOfPostWithId12() {
+  fetch("https://jsonplaceholder.typicode.com/posts/12", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: "Updated Post Title",
+    })
+  })
+    .then(response => response.json())
+    .then(post => {
+      const output = document.getElementById("output");
+      output.innerHTML = "Post with ID 12 update shoop:" + post.title +"<p></p>" + post.body; //post body pulls latin
+    });
+}
+
+function deletePostWithId12() {
+  fetch("https://jsonplaceholder.typicode.com/posts/12", {
+    method: "DELETE" // is method, value is delete 
+  })
+    .then(() => {
+      const output = document.getElementById("output");
+      output.innerHTML = "Post of id 12 deleted";
+    });
+}
+</script>
+</html>
